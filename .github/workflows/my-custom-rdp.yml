@@ -100,7 +100,7 @@ jobs:
       - name: Connect Tailscale
         shell: powershell
         run: |
-          & "$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=${{ secrets.TAILSCALE_AUTH_KEY }} --hostname=rdp-new-$env:GITHUB_RUN_ID
+          & "$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=${{ vars.TAILSCALE_AUTHKEY }} --hostname=rdp-new-$env:GITHUB_RUN_ID
           $ip = $null
           for ($i = 0; $i -lt 15; $i++) {
             $ip = (& "$env:ProgramFiles\Tailscale\tailscale.exe" ip -4 2>$null) | Select-Object -First 1
